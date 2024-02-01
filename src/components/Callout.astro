@@ -1,0 +1,25 @@
+---
+import type { VariantProps } from "class-variance-authority";
+import type { HTMLAttributes } from "astro/types";
+import { cva } from "class-variance-authority";
+
+const callout = cva(["flex items-start rounded-md border py-3 px-4"], {
+    variants: {
+        type: {
+            danger: "text-red-800 border-red-200 bg-red-100 dark:text-red-200 dark:border-red-200/40 dark:bg-red-900/40",
+            warning: "text-yellow-800 border-yellow-200 bg-yellow-100 dark:text-yellow-200 dark:border-yellow-200/40 dark:bg-yellow-900/40",
+            info: "text-blue-800 border-blue-200 bg-blue-100 dark:text-blue-200 dark:border-blue-200/40 dark:bg-blue-900/40",
+            default: "text-gray-800 border-gray-200 bg-gray-100 dark:text-gray-200 dark:border-gray-200/40 dark:bg-gray-900/40"
+        }
+    }
+})
+
+export interface Props extends HTMLAttributes<"div">, VariantProps<typeof callout> {}
+
+const { type = "default", ...props} = Astro.props
+---
+
+
+<div class={callout({type})} {...props} >
+    <slot/>
+</div>
