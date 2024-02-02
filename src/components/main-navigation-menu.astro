@@ -1,0 +1,19 @@
+---
+
+import { navMenuConfig } from "@/config/nav-menu";
+
+---
+
+<div class="relative z-10 flex max-w-max flex-1 items-center justify-center">
+  <div class="group flex flex-1 list-none items-center justify-center space-x-1">
+    {navMenuConfig.links.map(link => (
+      <a
+        
+        href={link.href}
+        class={"group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"}
+      >
+        {link.title}
+      </a>
+    ))}
+  </div>
+</div>
